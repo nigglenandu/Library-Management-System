@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Authors</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+<header>
+    <h1>Authors</h1>
+    <nav>
+        <a href="/author/create">Add Author</a>
+        <a href="/books">Books</a>
+        <a href="/borrow-history">Borrowing History</a>
+    </nav>
+</header>
+<main>
+    <ul th:if="${authors != null}">
+        <li th:each="author : ${authors}">
+            <div>
+                <strong>Name:</strong> <span th:text="${author.name}"></span>
+            </div>
+            <a th:href="@{/author/delete/{id}(id=${author.id})}">Delete</a>
+        </li>
+    </ul>
+    <p th:if="${authors == null}">No authors found.</p>
+</main>
+</body>
+</html>

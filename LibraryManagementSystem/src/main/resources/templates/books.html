@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Books</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+<header>
+    <h1>Books</h1>
+    <nav>
+        <a href="/books/create">Add Book</a>
+        <a href="/authors">Authors</a>
+        <a href="/borrow-history">Borrowing History</a>
+    </nav>
+</header>
+<main>
+    <ul th:if="${books != null}">
+        <li th:each="book : ${books}">
+            <div>
+                <strong>Title:</strong> <span th:text="${book.title}"></span>
+            </div>
+            <div>
+                <strong>ISBN:</strong> <span th:text="${book.isbn}"></span>
+            </div>
+            <div>
+                <strong>Author:</strong> <span th:text="${book.author.name}"></span>
+            </div>
+            <a th:href="@{/books/delete/{id}(id=${book.id})}">Delete</a>
+        </li>
+    </ul>
+    <p th:if="${books == null}">No books found.</p>
+</main>
+</body>
+</html>

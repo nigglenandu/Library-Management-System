@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Borrowing History</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+<header>
+    <h1>Borrowing History</h1>
+    <nav>
+        <a href="/books">Books</a>
+        <a href="/author">Authors</a>
+        <a href="/borrow-history/create">Add Borrow History</a>
+    </nav>
+</header>
+<main>
+    <ul th:if="${borrowHistoryList != null}">
+        <li th:each="history : ${borrowHistoryList}">
+            <div>
+                <strong>Book Title:</strong> <span th:text="${history.book.title}"></span>
+            </div>
+            <div>
+                <strong>Borrower Name:</strong> <span th:text="${history.borrowerName}"></span>
+            </div>
+            <div>
+                <strong>Borrowed Date:</strong> <span th:text="${history.borrowedDate}"></span>
+            </div>
+            <div>
+                <strong>Return Date:</strong> <span th:text="${history.returnDate}"></span>
+            </div>
+            <a th:href="@{/borrow-history/delete/{id}(id=${history.id})}">Delete</a>
+        </li>
+    </ul>
+    <p th:if="${borrowHistoryList == null}">No borrowing history found.</p>
+</main>
+</body>
+</html>
